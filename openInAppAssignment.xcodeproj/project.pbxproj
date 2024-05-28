@@ -13,6 +13,11 @@
 		646664122C05ADE700F28048 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 646664112C05ADE700F28048 /* Preview Assets.xcassets */; };
 		646664192C05B2A000F28048 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646664182C05B2A000F28048 /* APIService.swift */; };
 		6466641B2C05C7A300F28048 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6466641A2C05C7A300F28048 /* Dashboard.swift */; };
+		6466641D2C067F4A00F28048 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6466641C2C067F4A00F28048 /* HeaderView.swift */; };
+		646664202C0682E200F28048 /* Figtree-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6466641F2C0682E200F28048 /* Figtree-VariableFont_wght.ttf */; };
+		646664232C0683D900F28048 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646664222C0683D900F28048 /* Constants.swift */; };
+		646664252C06908F00F28048 /* GreetingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646664242C06908F00F28048 /* GreetingsView.swift */; };
+		646664272C06918D00F28048 /* RoundedCornerShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 646664262C06918D00F28048 /* RoundedCornerShape.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +28,12 @@
 		646664112C05ADE700F28048 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		646664182C05B2A000F28048 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		6466641A2C05C7A300F28048 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		6466641C2C067F4A00F28048 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		6466641F2C0682E200F28048 /* Figtree-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Figtree-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		646664212C0682F400F28048 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		646664222C0683D900F28048 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		646664242C06908F00F28048 /* GreetingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreetingsView.swift; sourceTree = "<group>"; };
+		646664262C06918D00F28048 /* RoundedCornerShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCornerShape.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,12 +66,18 @@
 		646664092C05ADE500F28048 /* openInAppAssignment */ = {
 			isa = PBXGroup;
 			children = (
+				646664212C0682F400F28048 /* Info.plist */,
+				6466641E2C06827D00F28048 /* Fonts */,
 				6466640A2C05ADE500F28048 /* openInAppAssignmentApp.swift */,
 				6466640C2C05ADE500F28048 /* ContentView.swift */,
 				6466640E2C05ADE700F28048 /* Assets.xcassets */,
 				646664102C05ADE700F28048 /* Preview Content */,
 				646664182C05B2A000F28048 /* APIService.swift */,
 				6466641A2C05C7A300F28048 /* Dashboard.swift */,
+				6466641C2C067F4A00F28048 /* HeaderView.swift */,
+				646664222C0683D900F28048 /* Constants.swift */,
+				646664242C06908F00F28048 /* GreetingsView.swift */,
+				646664262C06918D00F28048 /* RoundedCornerShape.swift */,
 			);
 			path = openInAppAssignment;
 			sourceTree = "<group>";
@@ -71,6 +88,14 @@
 				646664112C05ADE700F28048 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		6466641E2C06827D00F28048 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6466641F2C0682E200F28048 /* Figtree-VariableFont_wght.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +158,7 @@
 			files = (
 				646664122C05ADE700F28048 /* Preview Assets.xcassets in Resources */,
 				6466640F2C05ADE700F28048 /* Assets.xcassets in Resources */,
+				646664202C0682E200F28048 /* Figtree-VariableFont_wght.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,10 +169,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6466641D2C067F4A00F28048 /* HeaderView.swift in Sources */,
 				6466640D2C05ADE500F28048 /* ContentView.swift in Sources */,
 				646664192C05B2A000F28048 /* APIService.swift in Sources */,
 				6466641B2C05C7A300F28048 /* Dashboard.swift in Sources */,
 				6466640B2C05ADE500F28048 /* openInAppAssignmentApp.swift in Sources */,
+				646664232C0683D900F28048 /* Constants.swift in Sources */,
+				646664272C06918D00F28048 /* RoundedCornerShape.swift in Sources */,
+				646664252C06908F00F28048 /* GreetingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,11 +313,13 @@
 				DEVELOPMENT_TEAM = UYNLFZE2ZJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = openInAppAssignment/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,11 +344,13 @@
 				DEVELOPMENT_TEAM = UYNLFZE2ZJ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = openInAppAssignment/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

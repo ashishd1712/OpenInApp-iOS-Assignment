@@ -12,7 +12,7 @@ class APIService {
     
     private init() {}
     
-    func fetchDashboardData(completion: @escaping (Result<[String: Any], Error>) -> Void) {
+    func fetchDashboardData(completion: @escaping (Result<Dashboard, Error>) -> Void) {
         guard let url = URL(string: "https://api.inopenapp.com/api/v1/dashboardNew") else {
             return
         }
@@ -24,6 +24,7 @@ class APIService {
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
+                print("Error: \(error.localizedDescription)")
                 completion(.failure(error))
                 return
             }
@@ -35,19 +36,36 @@ class APIService {
             }
             
             do {
-                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                    completion(.success(json))
-                } else {
-                    let error = NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Invalid JSON"])
-                    completion(.failure(error))
+                let decoder = JSONDecoder()
+                let dashboardData = try decoder.decode(Dashboard.self, from: data)
+                completion(.success(dashboardData))
+            } catch let parseError as DecodingError {
+                switch parseError {
+                case .typeMismatch(let type, let context):
+                    print("Type '\(type)' mismatch: \(context.debugDescription), codingPath: \(context.codingPath)")
+                case .valueNotFound(let type, let context):
+                    print("Value not found for type '\(type)': \(context.debugDescription), codingPath: \(context.codingPath)")
+                case .keyNotFound(let key, let context):
+                    print("Key '\(key)' not found: \(context.debugDescription), codingPath: \(context.codingPath)")
+                case .dataCorrupted(let context):
+                    print("Data corrupted: \(context.debugDescription), codingPath: \(context.codingPath)")
+                @unknown default:
+                    print("Unknown error: \(parseError.localizedDescription)")
                 }
-            } catch let parseError {
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("Failed JSON data: \(jsonString)")
+                }
                 completion(.failure(parseError))
+            } catch {
+                print("Parsing error: \(error.localizedDescription)")
+                if let jsonString = String(data: data, encoding: .utf8) {
+                    print("Failed JSON data: \(jsonString)")
+                }
+                completion(.failure(error))
             }
-            
         }
         
         task.resume()
-        
     }
 }
+
