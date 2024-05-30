@@ -48,7 +48,7 @@ struct DashboardData: Codable {
     }
 }
 
-struct LinkData: Codable {
+struct LinkData: Codable, Hashable {
     let urlID: Int
     let webLink, smartLink, title: String
     let totalClicks: Int

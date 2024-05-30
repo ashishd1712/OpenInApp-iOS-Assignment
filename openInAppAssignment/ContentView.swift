@@ -8,22 +8,75 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var greeting = "Good morning"
-    @State private var name = "Ashish Dutt"
+    @State private var greeting = ""
+    @State private var name = "User"
+    @State private var selectedTab: LinkTab = .topLinks
+    @State var dashboard: Dashboard?
+    @State var isLoading = true
+    @State var chartData = [Dictionary<String, Int>.Element]()
+    let screenWidth = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
     var body: some View {
         VStack(spacing: 0) {
             HeaderView()
-            ScrollView {
-                GreetingsView(greeting: greeting, name: name)
+            if isLoading {
+                ProgressView("Loading...")
+                    .frame(width: screenWidth, height: screenHeight - 173)
+                    .background(Colors.scrollBackgroundColor).ignoresSafeArea(.all)
+                    .cornerRadius(16, corners: [.topLeft, .topRight])
+                    .padding(.top, -20)
+            } else {
+                ScrollView {
+                    GreetingsView(greeting: greeting, name: name)
+                        .padding(.bottom, 20)
+                    
+                    ChartView(data: chartData)
+                        .padding(.bottom, 20)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                       AnalyticsGridView(dashboard: dashboard!)
+                        
+                    }
+                    .padding(.bottom, 20)
+
+                    NavigationButton(title: "View Analytics", image: Images.analyticsArrow, size: 32)
+                        .padding(.bottom, 25)
+                    
+                    LinksNavigationBarView(selectedTab: $selectedTab)
+                        .padding(.bottom, 28)
+                    
+                    if selectedTab == .topLinks {
+                        LinksListView(links: dashboard!.data.topLinks)
+                            .padding(.bottom, 20)
+                    } else {
+                        LinksListView(links: dashboard!.data.recentLinks)
+                            .padding(.bottom, 20)
+                    }
+
+                    
+                    NavigationButton(title: "View all Links", image: Images.link, size: 19)
+                        .padding(.bottom, 20)
+                    
+                    SupportButton()
+                        .padding(.bottom, 20)
+                    
+                    FAQButton()
+                        .padding(.bottom, 20)
+                }
+                .scrollIndicators(.hidden)
+                .background(Colors.scrollBackgroundColor).ignoresSafeArea(.all)
+                .cornerRadius(16, corners: [.topLeft, .topRight])
+                .padding(.top, -20)
             }
-            .background(Colors.scrollBackgroundColor).ignoresSafeArea(.all)
-            .cornerRadius(16, corners: [.topLeft, .topRight])
-            .padding(.top, -20)
+        }
+        .onAppear {
+            fetchData()
+            updateGreeting()
+            if chartData.isEmpty {
+                chartData = generateChartData().sorted(by: {$0.key < $1.key})
+            }
         }
         .ignoresSafeArea(edges: .bottom)
-        .onAppear {
-            updateGreeting()
-        }
     }
     
     func updateGreeting() {
@@ -41,17 +94,14 @@ struct ContentView: View {
         APIService.shared.fetchDashboardData { result in
             switch result {
             case .success(let data):
-                printData(data: data)
+                dashboard = data
+                isLoading = false
             case .failure(let error):
                 print("Error: \(error.localizedDescription)")
             }
         }
     }
-    
-    func printData(data: Dashboard) {
-        print("\n\n\nData in Content View")
-        print(data)
-    }
+
 }
 
 #Preview {
